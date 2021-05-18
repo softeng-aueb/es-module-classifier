@@ -31,6 +31,31 @@ console.log(export1)
 
 """, True],
 
+["""
+    import defaultExport, { export1 [ , [...] ] } from "module-name";
+
+    console.log(defaultExport)
+""", True],
+
+#### Default and * import 
+["""import defaultExport, * as name from "module-name";
+
+console.log(defaultExport)
+""", True],
+
+["""   import   *  as  name, defaultExport from "module-name";
+
+console.log(defaultExport)
+""", True],
+
+#### import for side effects
+["""
+import "module-name";
+""", True],
+
+["""
+import 'module-name';
+""", True],
 
 ["""import export1 } from "module-name";""", False]
 

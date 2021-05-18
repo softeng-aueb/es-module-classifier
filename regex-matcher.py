@@ -7,11 +7,11 @@ regexes_cjs = [
 ]
 
 regexes_import = [
-    '^[\s]*import[\s]*[a-zA-Z_][a-zA-Z0-9_]*[\s]*from[\s]+',
+    '^[\s]*import[\s]+[a-zA-Z_][a-zA-Z0-9_]*[\s]*from[\s]+',
     '^[\s]*import[\s]+\*[\s]+as[\s]+',
-    '^[\s]*import.*[\s]*{.*}[\s]*from[\s]+',
-    '^((\s*)import(\s*)[a-zA-Z]+(\s*),(\s*)\*)',
-    '^((\s*)import(\s*)\")',
+    '^[\s]*import[\s]+.*{.*}[\s]*from[\s]+',
+    '^[\s]*import[\s]+[a-zA-Z_][a-zA-Z0-9_]*,[\s]*\*[\s]*as[\s]+.*from[\s]+',
+    '^[\s]*import[\s]*((\".*\")|(\'.*\'))',
 ]
 
 regexes_export = [
@@ -46,6 +46,7 @@ def assertNotMatches(regexList, content):
 
 
 for snippet in es6_tests:
+    print('-------------------------')
     shouldMatch = snippet[1]
     if shouldMatch:
         res = assertMatches(regexes_import, snippet[0])
@@ -55,6 +56,9 @@ for snippet in es6_tests:
         res = assertNotMatches(regexes_import, snippet[0])
         if not(res):
             print('Import regexes succeeded for \n', snippet)
+    res = assertNotMatches(regexes_cjs, snippet[0])
+    if not(res):
+        print('Import regexes succeeded for \n', snippet)
 
 
 
