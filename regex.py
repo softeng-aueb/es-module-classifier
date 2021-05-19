@@ -1,9 +1,11 @@
 regexes_cjs = [
-    '^\s*(exports\s*[.|=]|module\.exports\s*[.|=]|require\s*\()'
+    '^\s*((let|var|const)?\s*[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*)?require\s*\(',
+    '^\s*((let|var|const)?\s*[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*)?(exports\s*[.|=]|module\.exports\s*[.|=])'
 ]
 
 regexes_amd = [
-    '^\s*(define\s*\(|require\s*\(\s*\[|requirejs\s*\()'
+    '^\s*(require\s*\(\s*\[|requirejs\s*\()',
+    '^\s*define\s*\(\s*(function\s*|\[?\s*[\'\"])'
 ]
 
 regexes_import = [

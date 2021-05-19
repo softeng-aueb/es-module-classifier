@@ -17,7 +17,7 @@ _default_123Export.require('abc')
 
 #### import * from
 ["""import   *  as  name  from "module-name";
-// export appropriate modules
+// exports appropriate modules
     name.define(['a','b'])
 """, True],
 
