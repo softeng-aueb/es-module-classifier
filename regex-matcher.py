@@ -1,27 +1,7 @@
 import re2
 from es6_benchmarks import es6_imports, es6_exports
+from regex import regexes_cjs, regexes_import, regexes_export
 
-regexes_cjs = [
-    '^\s*(define\s*\( | require\s*\(\s*\[ | requirejs\s*\()',
-    '^\s*(exports\s*[.|=] | module\.exports\s*[.|=] | require\s*\()'
-]
-
-regexes_import = [
-    '^\s*import\s+[a-zA-Z_][a-zA-Z0-9_]*\s*from\s+',
-    '^\s*import\s+\*\s+as\s+',
-    '^\s*import\s+.*{.*}\s*from\s+',
-    '^\s*import\s+[a-zA-Z_][a-zA-Z0-9_]*,\s*\*\s*as\s+.*from\s+',
-    '^\s*import\s*((\".*\")|(\'.*\'))',
-]
-
-regexes_export = [
-    '^\s*export\s*(let|var|const)\s*[a-zA-Z_][a-zA-Z0-9_]*[,\s]\s*',
-    '^\s*export\s*(default)?\s*function\s*([a-zA-Z_][a-zA-Z0-9_]*)?\s*\(.*',
-    '^\s*export\s*(default)?\s*class\s*[a-zA-Z_][a-zA-Z0-9_]*\s*[\{$]',
-    '^\s*export\s*(const)?\s*\{\s*([a-zA-Z_][a-zA-Z0-9_]*|\}|$)',
-    '^\s*export\s*default\s*([a-zA-Z_][a-zA-Z0-9_]*|\( |\{|[0-9\-])',
-    #'^((\s*)export(\s*)\*)'
-]
 
 def assertMatches(regexList, content):
     matches = False
@@ -35,12 +15,12 @@ def assertMatches(regexList, content):
     return matches
 
 def assertNotMatches(regexList, content):
-    notMatches = False
+    notMatches = True
     for regex in regexList:
         r = re2.findall(regex, content, re2.MULTILINE)
-        if (len(r) == 0):
+        if (len(r) > 0):
             print('! Matches', regex)
-            notMatches = True
+            notMatches = False
             break
     return notMatches
 

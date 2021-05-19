@@ -153,9 +153,38 @@ export default function name1(…) { … } // also class, function*
 ["""
 export default class name_class{
 }
-// module.exports""", True],
+obj.define([lodash])
+//module.exports""", True],
 
-#export { name1 as default, … };
+["""
+export { name1 as default, … };
+obj.define([lodash])
+//module.exports""", True],
 
+#### Aggregating modules
+["""
+export * from './utils.js' //
+obj.define([lodash])
+//module.exports""", True],
+
+["""
+export * as name1 from './utils.js' //
+obj.define([lodash])
+//module.exports""", True],
+
+["""
+export { name1, name2, nameN } from './utils.js' //
+obj.define([lodash])
+//module.exports""", True],
+
+["""
+export { import1 as name1, import2 as name2, …, nameN } from './utils.js' //
+obj.define([lodash])
+//module.exports""", True],
+
+["""
+export { default, name1 } from './utils.js' //
+obj.define([lodash])
+//module.exports""", True],
 
 ]
