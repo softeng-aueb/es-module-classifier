@@ -1,6 +1,9 @@
 regexes_cjs = [
-    '^\s*(define\s*\(|require\s*\(\s*\[|requirejs\s*\()',
     '^\s*(exports\s*[.|=]|module\.exports\s*[.|=]|require\s*\()'
+]
+
+regexes_amd = [
+    '^\s*(define\s*\(|require\s*\(\s*\[|requirejs\s*\()'
 ]
 
 regexes_import = [
@@ -16,7 +19,6 @@ regexes_export = [
     '^\s*export\s*(default)?\s*function\s*([a-zA-Z_][a-zA-Z0-9_]*)?\s*\(.*',
     '^\s*export\s*(default)?\s*class\s*[a-zA-Z_][a-zA-Z0-9_]*\s*[\{$]',
     '^\s*export\s*(const)?\s*\{\s*([a-zA-Z_][a-zA-Z0-9_]*|\}|$)',
-    '^\s*export\s*default\s*([a-zA-Z_][a-zA-Z0-9_]*|\( |\{|[0-9\-])',
+    '^\s*export\s*default\s*([a-zA-Z_][a-zA-Z0-9_]*|\(|\{|[0-9\-])',
     '^\s*export\s*\*\s*(as\s*[a-zA-Z_][a-zA-Z0-9_]*\s*)?from\s*'
-    
 ]

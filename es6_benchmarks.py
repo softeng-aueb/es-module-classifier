@@ -143,6 +143,18 @@ export default expression;
 // module.exports""", True],
 
 ["""
+export default {"a": 1, "b":2};
+// module.exports""", True],
+
+["""
+export default 1+3;
+// module.exports""", True],
+
+["""
+export default (a + b);
+// module.exports""", True],
+
+["""
 export default function (…) { … } // also class, function*
 // module.exports""", True],
 

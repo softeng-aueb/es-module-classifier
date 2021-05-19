@@ -1,6 +1,6 @@
 import re2
 from es6_benchmarks import es6_imports, es6_exports
-from regex import regexes_cjs, regexes_import, regexes_export
+from regex import regexes_cjs, regexes_amd, regexes_import, regexes_export
 
 
 def assertMatches(regexList, content):
@@ -49,8 +49,8 @@ def test_regexes(regexes, snippets, nomatch_regexes, test_name):
                 print(test_name, 'regexes succeeded for \n', snippet)
     print(test_name, 'regexes ', error_count, '/', test_count, 'tests failed')
 
-test_regexes(regexes_import, es6_imports, regexes_cjs, 'Import')
-test_regexes(regexes_export, es6_exports, regexes_cjs, 'Export')
+test_regexes(regexes_import, es6_imports, regexes_cjs + regexes_amd, 'Import')
+test_regexes(regexes_export, es6_exports, regexes_cjs + regexes_amd, 'Export')
 
 
 
