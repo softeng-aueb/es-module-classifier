@@ -1,9 +1,12 @@
 
-es6_tests = [
+es6_imports = [
 #### default import
-["""import _default_123Export from "module-name";
-
+["""
+// this is a module
+import _default_123Export from "module-name";
+// define an appropriate module
 _default_123Export.require('abc')
+
 """, True],
 
 ["""
@@ -14,7 +17,7 @@ _default_123Export.require('abc')
 
 #### import * from
 ["""import   *  as  name  from "module-name";
-
+// export appropriate modules
     name.define(['a','b'])
 """, True],
 
@@ -57,8 +60,102 @@ import "module-name";
 import 'module-name';
 """, True],
 
-["""import export1 } from "module-name";""", False]
-
+["""import export1 } from "module-name";""", False],
 ]
 
+es6_exports = [
+#### export declarations
+["""
+import { export1 } from "module-name
+// define an appropriate module
+export let name1, name2, nameN;
+// module.exports""", True],
 
+["""export a variable""", False],
+
+["""
+// define an appropriate module
+export const name1, name2, nameN;
+// module.exports""", True],
+
+["""
+import { export1 } from "module-name
+// define an appropriate module
+export var name1, name2, nameN;
+// module.exports""", True],
+
+#### Export classes functions
+["""
+import { export1 } from "module-name
+// define an appropriate module
+export function function123_Name(var1){
+    console.log('hello')
+}
+// module.exports""", True],
+
+["""
+import { export1 } from "module-name
+// define an appropriate module
+    export function   (var1){
+    console.log('hello')
+}
+// module.exports""", True],
+
+["""export function that does this job (of course right)""", 
+False],
+
+["""export class ClassName123 {...}
+
+// module.exports""", True],
+
+["""export class _ClassName123 
+{}
+
+// module.exports""", True],
+
+["""export class class1 class2 {...}""", False],
+
+#### Export list
+["""
+export { name1, name2, …, nameN };
+// module.exports""", True],
+["""
+export {   
+     name1, name2, …, nameN };
+// module.exports""", True],
+["""
+export {   }
+// module.exports""", True],
+
+#### Renaming exports
+["""
+export { variable1 as name1, variable2 as name2, …, nameN };
+// module.exports""", True],
+
+#### Export destructured assignments with destructuring
+["""
+export const { name1, name2: bar } = o;
+// module.exports""", True],
+
+#### Default exports
+["""
+export default expression;
+// module.exports""", True],
+
+["""
+export default function (…) { … } // also class, function*
+// module.exports""", True],
+
+["""
+export default function name1(…) { … } // also class, function*
+// module.exports""", True],
+
+["""
+export default class name_class{
+}
+// module.exports""", True],
+
+#export { name1 as default, … };
+
+
+]
