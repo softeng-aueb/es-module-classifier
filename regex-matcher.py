@@ -6,7 +6,8 @@ from es5_benchmarks import cjs, amd
 def assertMatches(regexList, content):
     matches = False
     for regex in regexList:
-        r = re2.findall(regex, content, re2.MULTILINE)
+        #r = re2.findall(regex, content, re2.MULTILINE)
+        r = re2.findall(regex, content)
         if (len(r) > 0):
             #print(content)
             print('Matches', regex)
@@ -17,7 +18,7 @@ def assertMatches(regexList, content):
 def assertNotMatches(regexList, content):
     notMatches = True
     for regex in regexList:
-        r = re2.findall(regex, content, re2.MULTILINE)
+        r = re2.findall(regex, content)
         if (len(r) > 0):
             print('! Matches', regex)
             notMatches = False

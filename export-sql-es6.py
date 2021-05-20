@@ -13,14 +13,14 @@ def getBigQueryStmts(regexes, shouldMatch, shouldMatchAny):
 print('---------------- ES6 conditions ------------------------- ')
 
 bq_stmt = getBigQueryStmts(regexes_import + regexes_export, True, True)
-print(bq_stmt)
+print(repr(bq_stmt))
 
 print('----------------- AMD conditions --------------------------')
 bq_stmt = getBigQueryStmts(regexes_amd, True, True)
-print(bq_stmt)
+print(repr(bq_stmt))
 
 print('----------------- CJS conditions --------------------------')
 bq_stmt = getBigQueryStmts(regexes_cjs, True, True)
-print(bq_stmt)
+print(repr(bq_stmt))
 
     
