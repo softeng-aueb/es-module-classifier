@@ -1,16 +1,13 @@
 from regex import regexes_cjs, regexes_amd, regexes_import, regexes_export
 
 def regex_contains(exp, shouldMatch):
-    return f" REGEXP_CONTAINS(content, r'{exp}') = {'true' if shouldMatch else 'false'} "
+    return f" REGEXP_CONTAINS(content, r{repr(exp)}) = {'true' if shouldMatch else 'false'} "
 
 def getBigQueryStmts(regexes, shouldMatch, shouldMatchAny):
     stmt = ""
-    sep = " OR " if shouldMatchAny else " AND "
+    sep = " OR \n" if shouldMatchAny else " AND \n"
     bq_exprs = map(lambda exp: regex_contains(exp, shouldMatch), regexes)
-    # try to combine \n in literal or print form
-    stmt = repr(sep.join(bq_exprs)).replace("\\\\", "\\")
-    list = stmt.split("OR")
-    stmt = (sep + "\n").join(list)
+    stmt = sep.join(bq_exprs).replace("\\\\", "\\")
     return stmt
 
 print('---------------- ES6 conditions ------------------------- ')
